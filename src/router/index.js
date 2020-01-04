@@ -1,19 +1,26 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../home/Home.vue'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import adminDashboard from '../dashboards/admin/dashboard';
+import students from '../dashboards/admin/students';
+import teachers from '../dashboards/admin/teachers';
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: Home
+    name: 'Dashboard',
+    component: adminDashboard
   },
   {
-    path: '/about',
-    name: 'about',
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path: '/students',
+    name: 'students',
+    component: students,
+  },
+  {
+    path:'/teachers',
+    name: 'teachers',
+    component:teachers,
   }
 ]
 
