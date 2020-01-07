@@ -1,7 +1,7 @@
 <template>
-    <v-layout>
-      <h1> DashBoard </h1>
-    </v-layout>
+    <div>
+      <h2 class="subheading grey--text">DashBoard</h2>
+    </div>
 </template>
 
 <script>

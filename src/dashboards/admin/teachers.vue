@@ -1,7 +1,7 @@
 <template>
-     <h1>
-    Students 
-    </h1>
+    <div>
+      <h2 class="subheading grey--text">teachers</h2>
+    </div>
 </template>
 
 <script>

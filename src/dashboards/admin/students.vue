@@ -1,9 +1,7 @@
 <template>
-    <v-layout>
-        <h1>
-            Students 
-        </h1>
-    </v-layout>
+     <div>
+      <h2 class="subheading grey--text">Student</h2>
+    </div>
 </template>
 
 <script>
