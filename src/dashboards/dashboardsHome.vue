@@ -1,6 +1,9 @@
 <template>
   <v-app>
-   
+   <navHeader />
+    <v-content class="md-4">
+      <router-view />
+    </v-content>
    <dashboardFooter/>
   </v-app>
 </template>
