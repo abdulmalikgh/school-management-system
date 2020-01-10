@@ -1,21 +1,21 @@
-<!--
+
 <template>
     <v-app>
              <v-card width="400" class="mx-auto mt-5">
             <v-card-title class="m-3">
               <h1 class="display-1" centered>Admin Login</h1>
-            </v-card-title><v-divider></v-divider>
-
+            </v-card-title>
+            <v-divider></v-divider>
             <v-card-text>
                 <v-form @submit.prevent="login">
                     <v-text-field
                      label="Username" 
                      type="text"
-                    prepend-icon="mdi-account-circle"
-                    v-model="username"
-                    required
-                    :rules="userNameRules"
-                    error-count="1"/>
+                     prepend-icon="mdi-account-circle"
+                     v-model="username"
+                     required
+                     :rules="userNameRules"
+                     error-count="1"/>
 
                     <v-text-field label="password"
                      :type="showPassword ? 'text' : 'password'" 
@@ -29,7 +29,7 @@
                 </v-form>
             </v-card-text>
             <v-divider></v-divider>
-            <v-card-actions class="m-4">
+            <v-card-actions class="my-4 mr-4">
                 <v-spacer></v-spacer>
                 <v-btn color="success m-5" >
                     Login
@@ -76,4 +76,4 @@ export default {
 <style scoped>
 
 </style>
--->
+
