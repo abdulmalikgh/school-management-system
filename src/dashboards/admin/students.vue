@@ -32,23 +32,25 @@
                 <v-text-field type="date"
                  label="Date of Birth" 
                  :rules=" [v => !!v || 'Date of Birth is required']"
-                  required v-model="date_of_birth"/>
+                  required v-model="date_of_birth"/>                                                              
                 <v-text-field type="text"
                  label="Program" 
                  :rules=" [v => !!v || 'Program is required']" 
                  required v-model="program"/>
-                  <v-text-field type="text"
-                 label="Status" 
+                  <v-select
+                  label="Status" 
+                  :items="items"
                  :rules=" [v => !!v || 'status is required']" 
                  required v-model="status"/>
-                  <v-text-field type="date"
+                  <v-text-field type="Year"
                  label="Year Started" 
                  :rules=" [v => !!v || 'starting Date is required']" 
                  required v-model="year_started"/>
-                  <v-text-field type="text"
-                 label="Form" 
-                 :rules=" [v => !!v || 'form required']" required
-                  v-model="form"/>
+                  <v-select 
+                   label="Form" 
+                   :items="item"
+                   :rules=" [v => !!v || 'form required']" required
+                    v-model="form"/>
             </v-form>
             <v-card-actions>
                 <v-spacer></v-spacer>
@@ -87,8 +89,17 @@ export default {
          middle_name:'',
          last_name:'',
          program:'',
-         form:'',
-         status:'',
+         form:null,
+         item:[
+          'form one',
+          'form two',
+          'form three'
+         ],
+         status:null,
+         items: [
+             'day',
+             'boarding'
+         ],
          year_started:'',
          date_of_birth:'',
      }
@@ -113,6 +124,7 @@ export default {
 
                 };
                 this.$store.dispatch('registerStudent',studentData)
+                
             };
         },
     }

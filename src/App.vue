@@ -15,8 +15,7 @@ export default {
     //
   }),
   created: function() {
- /*
-    this.$http.interceptors.response.use(undefined, function(err) {
+   /* Axios.interceptors.response.use(undefined, function(err) {
 
      return new Promise(function(resolve,reject) {
 

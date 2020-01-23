@@ -51,7 +51,7 @@ export default new Vuex.Store({
           const token = resp.data.access_token;
           const adminData = resp.data.admin;
           localStorage.setItem('token', token);
-          axios.defaults.headers.common['Authorization'] = token;
+          axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
           commit('auth_success',{ token, adminData});
           resolve(resp)
         }).catch(err => {
@@ -64,7 +64,7 @@ export default new Vuex.Store({
     registerStudent({commit}, studentData){
       return new Promise((resolve,reject) =>{
         axios({
-          url:'https://school-management-system123.herokuapp.com/student/register',
+          url:'https://school-management-system123.herokuapp.com/api/student/register',
           data:studentData,
           method:'POST',
         }).then( resp => {
