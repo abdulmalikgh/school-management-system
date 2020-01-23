@@ -1,31 +1,13 @@
 <template>
-<span>
     <nav>
-        <v-app>
-            <v-app-bar color="black" dark app>
+        <v-app-bar color="black" dark app>
                 <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
                 <v-toolbar-title class="text-uppercase">
                     <span class="font-weight-light">Saint James </span>
                     <span> Senior High School </span>
                 </v-toolbar-title>
                     <v-spacer></v-spacer>
-                       <v-menu offset-y>
-                         <template slot:activator="{on}">
-                             <v-btn text v-on="on">
-                                 <v-icon left>expand_more</v-icon>
-                                 <span>Menu</span>
-                             </v-btn>
-                         </template>
-                             <v-list flat>
-                                 <v-list-item v-for="link in links" :key="link.text" router :to="link.route" active-class="border">
-                                   <v-list-item-title>
-                                       {{link.text}}
-                                   </v-list-item-title>
-                               </v-list-item>
-                             </v-list>
-                     </v-menu>
-
-                    <v-btn text>
+                    <v-btn text @click="logout">
                         <span>Exit</span>
                         <v-icon right>exit_to_app</v-icon>
                     </v-btn>
@@ -53,9 +35,7 @@
                     </v-list-item>
                 </v-list>   
             </v-navigation-drawer>
-        </v-app>
     </nav>
-</span>
 </template>
 <script>
 export default {
@@ -64,11 +44,19 @@ export default {
        return{
         drawer: true, 
         links:[
-            {icon:'dashboard',text:'DashBoard', route:'/'},
+            {icon:'dashboard',text:'DashBoard', route:'/admin'},
             {icon:'person', text:'students',route:'/students'},
             {icon: 'person', text:'teachers',route:'/teachers'}
         ]
        }
+    },
+    methods:{
+        logout() {
+            this.$store.dispatch('logout')
+            .then(()=>{
+                this.$router.push('/adminLogin')
+            })
+        }
     }
 }
 </script>

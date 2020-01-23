@@ -1,4 +1,3 @@
-
 <template>
     <v-app>
              <v-card width="400" class="mx-auto mt-5">
@@ -7,7 +6,9 @@
             </v-card-title>
             <v-divider></v-divider>
             <v-card-text>
-                <v-form @submit.prevent="login">
+                <v-form  ref="form"
+                         v-model="valid"
+                         lazy-validation>
                     <v-text-field
                      label="Username" 
                      type="text"
@@ -31,7 +32,7 @@
             <v-divider></v-divider>
             <v-card-actions class="my-4 mr-4">
                 <v-spacer></v-spacer>
-                <v-btn color="success m-5" >
+                <v-btn color="success m-5" @click="login" :disabled="!valid">
                     Login
                 </v-btn>
             </v-card-actions>
@@ -40,36 +41,46 @@
 </template>
 
 <script>
-import loginForm from './loginForm'
 export default {
    components:{
-     loginForm
    },
    data() {
        return {
+           valid: true,
            username:'',
            password:'',
            showPassword: false,
            userNameRules: [v => !!v || 'Username is required'],
            passwordRules: [
                v => !!v || 'Password is required',
-               v => (v && v.length >= 8) || "Password must have 8+ characters"
+               v => (v && v.length >= 4) || "Password must have 4+ characters"
            ]
        }
    },
-   methods(){
-       login: {
-         let username = this.username;
-         let password = this.password;
-         this.$store.dispatch('login', {username, password})
+   methods: {
+       login: function(e){
+           e.preventDefault();
+
+       if(this.$refs.form.validate()) { //validate and log user in
+            const adminData = {
+              "grant_type": "password",
+              "client_id": 2,
+              "client_secret": " Z5efCDIX98H7aWrEeBv6hSW1kCOiLdWSRF8jcK5I",
+              "username":this.username,
+              "password":this.password,
+              "provider":'admins'
+         }
+         
+         this.$store.dispatch('login',adminData)
           .then(() => {
               this.$router.push('/admin')
           })
           .catch(err => {
-              console.log('error');
+              throw new Error('Error occurs', err)
           })
        }
    }
+}
 }
 </script>
 

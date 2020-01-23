@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import store from '../store';
 import adminDashboard from '../dashboards/admin/dashboard';
 import students from '../dashboards/admin/students';
 import teachers from '../dashboards/admin/teachers';
@@ -8,6 +9,7 @@ import about from '../homeComponents/About';
 import main from '../main.vue';
 import dashboardsHome from '../dashboards/dashboardsHome';
 import AdminLogin from '../homeComponents/adminLogin';
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -40,7 +42,7 @@ const routes = [
     path: '/admin',
     name: 'dashboardsHome',
     redirect:'/dashboard',
-    meta:{requirdAuth: true},
+    meta:{requiresAuth: true},
     component: dashboardsHome,
     children: [
       {
@@ -69,4 +71,20 @@ const router = new VueRouter({
   routes
 })
 
+router.beforeEach((to, from, next) => {
+
+  if( to.matched.some(record => record.meta.requiresAuth)){
+
+    if(store.getters.isLoggedIn) {
+
+      next();
+
+      return;
+
+    };
+    next('/admin')
+  } else {
+    next();
+  };
+});
 export default router
